@@ -35,13 +35,17 @@ Game.prototype.resetCanvas = function(){
 };
 
 document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 38) myGame.paddlePlyrR.movePlyrR('plyrRUp');
-    if (event.keyCode === 40) myGame.paddlePlyrR.movePlyrR('plyrRDown');
-});
-
-document.addEventListener('keydown', function(event) {
+    // if (event.keyCode === 80) myGame.paddlePlyrR.movePlyrR('plyrRUp');
+    // if (event.keyCode === 76) myGame.paddlePlyrR.movePlyrR('plyrRDown');
     if (event.keyCode === 87) myGame.paddlePlyrL.movePlyrL('plyrLUp');
     if (event.keyCode === 83) myGame.paddlePlyrL.movePlyrL('plyrLDown');
+});
+
+document.addEventListener('keyup', function(event) {
+    // if (event.keyCode === 80) myGame.paddlePlyrR.stopPlyrR('stop');
+    // if (event.keyCode === 76) myGame.paddlePlyrR.stopPlyrR('stop');
+    if (event.keyCode === 87) myGame.paddlePlyrL.stopPlyrL('stop');
+    if (event.keyCode === 83) myGame.paddlePlyrL.stopPlyrL('stop');
 });
 
 Game.prototype.checkCollisions = function(){
@@ -100,7 +104,7 @@ Game.prototype.gameOver = function(player){
     //GameOverText
     this.ctx.font = '20pt Calibri';
     this.ctx.fillStyle = 'red';
-    this.ctx.fillText('Game over! ' + player + ' player wins', 550, 260);
+    this.ctx.fillText('Game over! ' + player + ' wins', 550, 260);
     this.gameOverCheck = true;
 };
 
@@ -114,6 +118,8 @@ Game.prototype.play = function(){
         game.checkCollisions();
         game.ball.move(this.canvas.height, this.canvas.width);
         game.ball.render(game.ctx);
+        game.paddlePlyrR.movePlyrR();
+        game.paddlePlyrL.movePlyrL();
         game.paddlePlyrR.renderR(game.ctx);
         game.paddlePlyrL.renderL(game.ctx);
         game.countScore();

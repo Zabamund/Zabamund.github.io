@@ -1,6 +1,6 @@
 var Ball = function(){
     this.radius = 7;
-    this.position = [50, 250];
+    this.position = [10, 10];
     this.dirVector = [1, 1];
     this.color = '#00ff00';
     this.velocity = [5,3];

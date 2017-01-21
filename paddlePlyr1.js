@@ -3,7 +3,7 @@ var PaddlePlyr1 = function(){
     this.width = 15;
     this.position = [1485, 370];
     this.dirVector = [1, 1];
-    this.velocity = [1, 1];
+    this.velocity = [0, 0];
     this.score = 0;
 };
 
@@ -17,7 +17,37 @@ PaddlePlyr1.prototype.renderR = function(ctx){
     ctx.stroke();
 };
 
-PaddlePlyr1.prototype.movePlyrR = function(direction){
-    if (direction === 'plyrRUp' && (this.position[1] > 0)) this.position[1] -= 15 * this.dirVector[1];
-    if (direction === 'plyrRDown' && (this.position[1] < (canvas.height - this.height))) this.position[1] += 15 * this.dirVector[1];
+document.addEventListener('keydown', function(event){
+    if (event.keyCode === 80){
+        myGame.paddlePlyrR.dirVector = [0, -1];
+        myGame.paddlePlyrR.startPaddle();
+    }
+    if (event.keyCode === 76){
+        myGame.paddlePlyrR.dirVector = [0, 1];
+        myGame.paddlePlyrR.startPaddle();
+    }
+});
+
+PaddlePlyr1.prototype.startPaddle = function(){
+    this.velocity = [0, 5];
+};
+
+PaddlePlyr1.prototype.movePlyrR = function(){
+    if(this.position[1] < 0){
+        this.position[1] = 0;
+        this.stopPaddle();
+    } else if (this.position[1] > (canvas.height - this.height)){
+        this.position[1] = (canvas.height - this.height);
+        this.stopPaddle();
+    } else {
+        this.position[1] += this.velocity[1] * this.dirVector[1];
+    }
+};
+
+document.addEventListener('keyup', function(event) {
+    myGame.paddlePlyrR.stopPaddle();
+});
+
+PaddlePlyr1.prototype.stopPaddle = function(){
+    this.velocity = [0, 0];
 };
