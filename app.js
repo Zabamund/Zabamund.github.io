@@ -123,7 +123,7 @@ Game.prototype.play = function(){
         game.paddlePlyrR.renderR(game.ctx);
         game.paddlePlyrL.renderL(game.ctx);
         game.countScore();
-    }, 10);
+    }, 16);
 };
 
 var myGame = new Game();
