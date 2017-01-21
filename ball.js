@@ -26,11 +26,11 @@ Ball.prototype.move = function(height, width){
         this.bounceHorizontal();
     }
     this.position[0] += this.velocity[0] * this.dirVector[0];
-    this.velocity[0] = this.velocity[0] + 0.0005;
+    this.velocity[0] = this.velocity[0] + 0.0007;
 
     if (this.position[1] < this.radius || this.position[1] > height - this.radius || (this.verticalBounce === true)){
         this.bounceVertical();
     }
     this.position[1] += this.velocity[1] * this.dirVector[1];
-    this.velocity[1] = this.velocity[1] + 0.0002;
+    this.velocity[1] = this.velocity[1] + 0.0003;
 };
